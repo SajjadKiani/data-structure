@@ -12,6 +12,6 @@
 + stack node
 
 
-**please commit and complte this repo if like**
+**please fork and complete this repo if like**
 
 *This list will be update*
