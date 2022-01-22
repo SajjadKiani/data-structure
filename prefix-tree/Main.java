@@ -8,6 +8,7 @@ public class Main {
         Scanner file1 = new Scanner( new File("testcase0input1.txt"));
         Scanner file2 = new Scanner( new File("testcase0input2.txt"));
 
+        // train
         // create Prefix tree
         String[] train = new String[1000000];
         for (int i=0 ; i < 1000000 ; i++) {
@@ -18,12 +19,18 @@ public class Main {
 
         pt.createTree();
 
-
+        // test
         // find 1000 numbers in tree
         String[] test = new String[1000];
         for (int i = 0; i < 1000; i++) {
             test[i] = file2.nextLine();
         }
+
+        // delete a Node
+        pt.deleteNode("1081");
+
+        // create a Node
+        pt.createNodes("1081");
 
         pt.search(test);
 
@@ -52,7 +59,7 @@ class PrefixTree {
         this.root = new Node("*");
     }
 
-    private void createNodes (String number) {
+    public void createNodes (String number) {
         Node currentNode = root;
 
         for (int i = 0; i < number.length(); i++) {
@@ -116,5 +123,24 @@ class PrefixTree {
 
         System.out.println(currentNode.count);
         // System.out.println("[ " + number + " ] - [ " + currentNode.count + " ]");
+    }
+
+    public void deleteNode (String number) {
+        Node currentNode = root;
+
+        for (int i = 0; i < number.length(); i++) {
+
+            String num = Character.toString (number.charAt(i));
+
+            Node tempNode = findNode(num, currentNode);
+
+            if (tempNode != null) {
+                currentNode = tempNode;
+            } else {
+                break;
+            }
+        }
+
+        currentNode.count--;
     }
 }
